@@ -45,6 +45,10 @@ COPY ./bootstrap_scripts/bootstrap_transformers.sh /dltk/
 COPY app /dltk/app
 COPY notebooks /dltk/notebooks
 
+# Convert windows-like line endings to linux-like
+# The bootstrap script won't run otherwise if the image was build on a windows machine
+RUN find /dltk/ -name 'bootstrap_*.sh' -type f -exec dos2unix {} \;
+
 # copy and expand transformer content
 ADD basemodels/class_en.tar.gz /dltk/app/model/data/classification/en
 ADD basemodels/class_jp.tar.gz /dltk/app/model/data/classification/jp

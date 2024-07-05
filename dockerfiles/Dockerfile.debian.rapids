@@ -48,6 +48,10 @@ COPY bootstrap_scripts/bootstrap_rapids.sh /dltk/
 COPY app /dltk/app
 COPY notebooks /dltk/notebooks
 
+# Convert windows-like line endings to linux-like
+# The bootstrap script won't run otherwise if the image was build on a windows machine
+RUN find /dltk/ -name 'bootstrap_*.sh' -type f -exec dos2unix {} \;
+
 # Install local DSDL supporting functions
 RUN mkdir /dltk/packages
 COPY package-dsdlsupport/dist/dsdlsupport-1.0.0.tar.gz /dltk/packages/dsdlsupport-1.0.0.tar.gz

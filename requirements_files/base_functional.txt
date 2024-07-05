@@ -25,3 +25,6 @@ opentelemetry-instrumentation-fastapi==0.33b0
 # basic data-science libraries
 pandas
 numpy
+
+# Resolve windows and linux conflicts
+dos2unix
